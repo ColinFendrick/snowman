@@ -3,6 +3,7 @@ import _ from 'lodash'
 import LetterButton from './LetterButton'
 import Snowman from './Snowman'
 import Word from './Word'
+import PlayAgainButton from './PlayAgainButton.js'
 
 // ALPHABET is an array of 26 letters, 'a' through 'z', i.e. ['a', 'b', 'c', ...'z']
 const ALPHABET = _.range(26).map(i => String.fromCharCode(i + 97))
@@ -14,34 +15,55 @@ class App extends Component {
 
   constructor () {
     super()
-    // TODO
     this.state = {
+      guesses: [],
+      matched: [],
+      word: _.sample(WORDS)
     }
   }
 
   choose (letter) {
-    // TODO
-    console.log('You clicked', letter)
+    const { word, guesses, matched } = this.state
+    if (guesses.includes(letter)) return
+    this.setState({guesses: guesses.concat(letter)})
+    if (word.split('').includes(letter)) {
+      this.setState({matched: matched.concat(letter)})
+      this.points
+    }
+  }
+
+  reset = () => {
+    this.setState({
+      guesses: [],
+      matched: [],
+      word: _.sample(WORDS)
+    })
   }
 
   get points () {
-    // TODO
-    return 0
+    const { word, matched } = this.state
+    let wordArr = (word.split(''))
+    return (word.length - wordArr.filter(p => !matched.includes(p)).length)
   }
 
   render () {
+    const letters = ALPHABET.map((character, i) => {
+      return <LetterButton value={ALPHABET[i]}
+        onChoose={() => this.choose(ALPHABET[i])}
+        disabled={this.state.guesses.includes(ALPHABET[i])}
+        index={i}
+        key={i}
+      />
+    })
+
     return <div className='app'>
       <main>
         <Snowman step={this.points} size={400} />
-        {/* TODO */}
-        <Word value='SNOWMAN' guesses={['E', 'M', 'O']} />
+        <Word value={this.state.word} guesses={this.state.guesses} />
         <div className='keyboard'>
-          {/* TODO */}
-          <LetterButton
-            value='A'
-            onChoose={() => this.choose('A')}
-            disabled={false} />
+          {letters}
         </div>
+        <PlayAgainButton reset={this.reset} />
       </main>
       <footer>It's like hangman, but, um... backwards or something.</footer>
     </div>
