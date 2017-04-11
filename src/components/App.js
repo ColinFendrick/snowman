@@ -47,9 +47,10 @@ class App extends Component {
 
   render () {
     const letters = ALPHABET.map((character, i) => {
-      return <LetterButton value={ALPHABET[i]}
-        onChoose={() => this.choose(ALPHABET[i])}
-        disabled={this.state.guesses.includes(ALPHABET[i])}
+      return <LetterButton value={character}
+        onChoose={() => this.choose(character)}
+        disabled={this.state.guesses.includes(character)}
+        matched={this.state.matched.includes(character)}
         index={i}
         key={i}
       />

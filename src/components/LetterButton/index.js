@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 
 class LetterButton extends Component {
 
@@ -9,8 +10,9 @@ class LetterButton extends Component {
   }
 
   render () {
+    const { matched } = this.props
     return <button
-      className='letter-button'
+      className={cx('letter-button', {matched})}
       onClick={this.props.onChoose}
       disabled={this.props.disabled}>
       {this.props.value}
