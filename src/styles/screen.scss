@@ -81,7 +81,9 @@ footer {
 }
 
 .matched {
-  background-color: green;
+  transform: scale(1.2);
+  transition: transform 250ms ease;
+  transition-delay: 250ms;
 }
 
 .resetButton {
