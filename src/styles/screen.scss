@@ -22,6 +22,7 @@ body,
 .app {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 main {
@@ -56,13 +57,12 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 60%;
 }
 
 .letter-button {
   font-family: 'Futura', 'Trebuchet MS', sans-serif;
-  font-size: 2em;
-  width: 2em;
-  height: 2em;
+  font-size: 100%;
   text-align: center;
   text-transform: uppercase;
   background-color: hsl(220, 75%, 80%);
@@ -75,5 +75,9 @@ footer {
 }
 
 .resetButton {
-  background-color: green;
+  font-family: 'Futura', 'Trebuchet MS', sans-serif;
+  background-color: hsl(220, 75%, 80%);
+  border: 2px solid hsl(220, 75%, 50%);
+  text-transform: uppercase;
+  margin: 0.2em;
 }

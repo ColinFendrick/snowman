@@ -42,8 +42,7 @@ class App extends Component {
 
   get points () {
     const { word, matched } = this.state
-    let wordArr = (word.split(''))
-    return (word.length - wordArr.filter(p => !matched.includes(p)).length)
+    return (word.length - word.split('').filter(p => !matched.includes(p)).length)
   }
 
   render () {
