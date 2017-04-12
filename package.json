@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "deploy": "npm run build && surge ./build --domain snowman.colinfendrick.surge.sh",
+    "deploy": "npm run build && surge ./public --domain snowman.colinfendrick.surge.sh",
     "start": "webpack-dev-server",
     "build": "rm -rf public && NODE_ENV=production webpack --optimize-minimize --progress --profile --colors"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.2",
     "react": "^15.4.1",
